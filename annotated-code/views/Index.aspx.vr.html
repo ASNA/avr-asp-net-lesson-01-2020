@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Index.aspx.vr</title>
+  <link rel="stylesheet" href="..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>Index.aspx.vr</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="nx">Using</span> <span class="nx">System</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Data</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Configuration</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Collections</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">Security</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span><span class="p">.</span><span class="nx">WebParts</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">HtmlControls</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">IO</span> 
+
+<span class="nx">BegClass</span> <span class="nx">Index</span> <span class="nx">Partial</span><span class="p">(</span><span class="o">*</span><span class="nx">Yes</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span> <span class="nx">Extends</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">Page</span><span class="p">)</span>
+
+    <span class="nx">BegSr</span> <span class="nx">Page_Load</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Private</span><span class="p">)</span> <span class="nx">Event</span><span class="p">(</span><span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">Load</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">sender</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Object</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">e</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">EventArgs</span><span class="p">)</span>
+
+        <span class="nx">DclFld</span> <span class="nx">x</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Boolean</span><span class="p">)</span> 
+
+        <span class="c1">// This should be ignored</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Set page title. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">Page</span><span class="p">.</span><span class="nx">Title</span> <span class="o">=</span> <span class="s1">&#39;Index&#39;</span>
+
+        <span class="nx">DclFld</span> <span class="nx">CurrentMaster</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">MasterPageNav</span><span class="p">)</span> 
+
+        <span class="nx">CurrentMaster</span> <span class="o">=</span> <span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">Master</span> <span class="o">*</span><span class="nx">As</span> <span class="nx">MasterPageNav</span>
+        <span class="nx">CurrentMaster</span><span class="p">.</span><span class="nx">ChildPage</span> <span class="o">=</span> <span class="o">*</span><span class="nx">New</span> <span class="nx">FileInfo</span><span class="p">(</span><span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">Request</span><span class="p">.</span><span class="nx">Url</span><span class="p">.</span><span class="nx">LocalPath</span><span class="p">).</span><span class="nx">Name</span>
+        <span class="nx">CurrentMaster</span><span class="p">.</span><span class="nx">PageHeading</span> <span class="o">=</span> <span class="s1">&#39;Main page&#39;</span>
+
+        <span class="nx">If</span> <span class="p">(</span><span class="nx">NOT</span> <span class="nx">Page</span><span class="p">.</span><span class="nx">IsPostBack</span><span class="p">)</span>
+            <span class="nx">LoadListView</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Called the first time that the page is loaded.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">Else</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Called subsequent times that the page is displayed.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">EndIf</span>
+    <span class="nx">EndSr</span>
+
+    <span class="nx">BegSr</span> <span class="nx">Page_Unload</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Private</span><span class="p">)</span> <span class="nx">Event</span><span class="p">(</span><span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">Unload</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">sender</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Object</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">e</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">EventArgs</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Called when the page is unloaded.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nx">EndSr</span>
+
+    <span class="nx">BegSr</span> <span class="nx">LoadListView</span>
+        <span class="nx">DclFld</span> <span class="nx">CustList</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">CustomerList</span><span class="p">)</span> <span class="nx">New</span><span class="p">()</span>
+
+        <span class="nx">DclArray</span> <span class="nx">Customers</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">CMastNewL2_Entity</span><span class="p">)</span> <span class="nx">Rank</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="nx">Customers</span> <span class="o">=</span> <span class="nx">CustList</span><span class="p">.</span><span class="nx">GetList</span><span class="p">()</span>
+
+        <span class="nx">listviewCustomers</span><span class="p">.</span><span class="nx">DataSource</span> <span class="o">=</span> <span class="nx">Customers</span>
+        <span class="nx">listviewCustomers</span><span class="p">.</span><span class="nx">DataBind</span><span class="p">()</span>
+    <span class="nx">EndSr</span>
+
+    <span class="nx">BegSr</span> <span class="nx">listviewCustomersRowAction</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Protected</span><span class="p">)</span> 
+        <span class="nx">DclSrParm</span> <span class="nx">sender</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Object</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">e</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">ListViewCommandEventArgs</span><span class="p">)</span>
+
+        <span class="nx">DclFld</span> <span class="nx">CommandName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
+        <span class="nx">DclFld</span> <span class="nx">RowNumber</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Integer4</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Do something here based on CommandName and RowNumber </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">CommandName</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">CommandName</span>
+        <span class="nx">RowNumber</span> <span class="o">=</span> <span class="nx">Convert</span><span class="p">.</span><span class="nx">ToInt32</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">CommandArgument</span><span class="p">)</span>
+
+    <span class="nx">EndSr</span> 
+
+
+        
+    
+<span class="nx">EndClass</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

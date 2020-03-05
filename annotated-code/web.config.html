@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>web.config</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>web.config</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">xml</span> <span class="nx">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="o">?&gt;</span>
+  <span class="nx">For</span> <span class="nx">more</span> <span class="nx">information</span> <span class="nx">on</span> <span class="nx">how</span> <span class="nx">to</span> <span class="nx">configure</span> <span class="nx">your</span> <span class="nx">ASP</span><span class="p">.</span><span class="nx">NET</span> <span class="nx">application</span><span class="p">,</span> <span class="nx">please</span> <span class="nx">visit</span>
+  <span class="nx">http</span><span class="o">:</span><span class="c1">//go.microsoft.com/fwlink/?LinkId=169433</span>
+<span class="o">&lt;</span><span class="nx">configuration</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">appSettings</span><span class="o">&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Define database names and assign default database name</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="o">&lt;</span><span class="nx">add</span> <span class="nx">key</span><span class="o">=</span><span class="s2">&quot;DefaultDBName&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Cypress&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="nx">add</span> <span class="nx">key</span><span class="o">=</span><span class="s2">&quot;Local&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;*Public/Cypress&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="nx">add</span> <span class="nx">key</span><span class="o">=</span><span class="s2">&quot;Cypress&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;*Public/Cypress&quot;</span><span class="o">/&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Disable MS&rsquo;s <a href="https://efficientuser.com/2017/07/06/browser-link-option-in-visual-studio/">BrowserLink feature.</a> </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="o">&lt;</span><span class="nx">add</span> <span class="nx">key</span><span class="o">=</span><span class="s2">&quot;vs:EnableBrowserLink&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/appSettings&gt;</span>
+
+  <span class="o">&lt;</span><span class="nx">system</span><span class="p">.</span><span class="nx">web</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">compilation</span> <span class="nx">debug</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="nx">targetFramework</span><span class="o">=</span><span class="s2">&quot;4.6.1&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="nx">httpCookies</span> <span class="nx">requireSSL</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="o">/&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Enable Forms Authentication mode.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="o">&lt;</span><span class="nx">authentication</span> <span class="nx">mode</span><span class="o">=</span><span class="s2">&quot;Forms&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">forms</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;Loginform&quot;</span> <span class="nx">loginUrl</span><span class="o">=</span><span class="s2">&quot;views/login.aspx&quot;</span> <span class="nx">timeout</span><span class="o">=</span><span class="s2">&quot;30&quot;</span><span class="o">/&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>The timeout value is specified in minutes. 
+This value also determines how long the authentication cookie, if used,
+persists.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="o">&lt;</span><span class="err">/authentication&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Deny all unauthorized users from all pages unconditionally.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="o">&lt;</span><span class="nx">authorization</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">deny</span> <span class="nx">users</span><span class="o">=</span><span class="s2">&quot;?&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="err">/authorization&gt;  </span>
+  <span class="o">&lt;</span><span class="err">/system.web&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Unconditionally allow all users access to any pages in the 
+&lsquo;public&rsquo; folder. This provides exceptions to the rule above.
+Add as a many of these chunks as necessary.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="o">&lt;</span><span class="nx">location</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">system</span><span class="p">.</span><span class="nx">web</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">authorization</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">allow</span> <span class="nx">users</span><span class="o">=</span><span class="s2">&quot;?&quot;</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="err">/authorization&gt;</span>
+    <span class="o">&lt;</span><span class="err">/system.web&gt;</span>
+  <span class="o">&lt;</span><span class="err">/location&gt;</span>
+
+<span class="o">&lt;</span><span class="err">/configuration&gt;</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

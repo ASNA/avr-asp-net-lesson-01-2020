@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>CMastNewL2_Entity.vr</title>
+  <link rel="stylesheet" href="..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>CMastNewL2_Entity.vr</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="nx">Using</span> <span class="nx">System</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">Generic</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Linq</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Data</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Configuration</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">Security</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span><span class="p">.</span><span class="nx">WebParts</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">HtmlControls</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <hr />
+<h2>Buffer class that holds all record data.</h2>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BegClass</span> <span class="nx">Cmastnewl2_Entity</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmcustno</span>     <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Packed</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmname</span>       <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmaddr1</span>      <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmcity</span>       <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmstate</span>      <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmcntry</span>      <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmpostcode</span>   <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmactive</span>     <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmfax</span>        <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Packed</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+    <span class="nx">DclProp</span> <span class="nx">cmphone</span>      <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+
+    <span class="nx">DclProp</span> <span class="nx">__Hash</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+<span class="nx">EndClass</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

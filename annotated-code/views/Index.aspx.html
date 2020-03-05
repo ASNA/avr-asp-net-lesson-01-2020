@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Index.aspx</title>
+  <link rel="stylesheet" href="..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>Index.aspx</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="o">&lt;%</span><span class="err">@</span> <span class="nx">Page</span> <span class="nx">Language</span><span class="o">=</span><span class="s2">&quot;AVR&quot;</span> <span class="nx">MasterPageFile</span><span class="o">=</span><span class="s2">&quot;~/MasterPageNav.master&quot;</span> <span class="nx">AutoEventWireup</span><span class="o">=</span><span class="s2">&quot;false&quot;</span> <span class="nx">CodeFile</span><span class="o">=</span><span class="s2">&quot;Index.aspx.vr&quot;</span> <span class="nx">Inherits</span><span class="o">=</span><span class="s2">&quot;Index&quot;</span> <span class="nx">Title</span><span class="o">=</span><span class="s2">&quot;Untitled Page&quot;</span> <span class="o">%&gt;</span>
+
+
+<span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">Content</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;Content1&quot;</span> <span class="nx">ContentPlaceHolderID</span><span class="o">=</span><span class="s2">&quot;Head&quot;</span> <span class="nx">Runat</span><span class="o">=</span><span class="s2">&quot;Server&quot;</span><span class="o">&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>HttpContext.Current.IsDebuggingEnabled is true when the application 
+is running under debug. This lets you conditionally include different 
+code for debug/production. In this case the same code is included but 
+it would be good if the CSS were combined and minified for production.
+If you did that the combined and minified CSS would be specified 
+for the production version.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="o">&lt;%</span>
+    <span class="nx">If</span> <span class="p">(</span><span class="nx">HttpContext</span><span class="p">.</span><span class="nx">Current</span><span class="p">.</span><span class="nx">IsDebuggingEnabled</span><span class="p">)</span>     
+    <span class="o">%&gt;</span>
+    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;%=Page.ResolveUrl(&quot;</span><span class="o">~</span><span class="s2">&quot;)%&gt;assets/css/one-column-layout.css&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;%=Page.ResolveUrl(&quot;</span><span class="o">~</span><span class="s2">&quot;)%&gt;assets/css/grid.css&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;%</span>
+    <span class="nx">Else</span>
+    <span class="o">%&gt;</span>
+    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;%=Page.ResolveUrl(&quot;</span><span class="o">~</span><span class="s2">&quot;)%&gt;assets/css/one-column-layout.css&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;%=Page.ResolveUrl(&quot;</span><span class="o">~</span><span class="s2">&quot;)%&gt;assets/css/grid.css&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;%</span>
+    <span class="nx">EndIf</span> 
+    <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="err">/asp:Content&gt;</span>
+<span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">Content</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;Content2&quot;</span> <span class="nx">ContentPlaceHolderID</span><span class="o">=</span><span class="s2">&quot;Content&quot;</span> <span class="nx">Runat</span><span class="o">=</span><span class="s2">&quot;Server&quot;</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;container&quot;</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="nx">header</span><span class="o">&gt;</span>
+      <span class="nx">Customer</span> <span class="nx">List</span>
+   <span class="o">&lt;</span><span class="err">/header&gt;</span>
+    
+   <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>The search form isn&rsquo;t used in this version the app.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>       <span class="c">&lt;!--</span> <span class="nx">Search</span> <span class="nx">form</span> <span class="o">--&gt;</span>
+       <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;mt-0 mb-2&quot;</span><span class="o">&gt;</span>
+           <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;position-to-container&quot;</span><span class="o">&gt;</span>
+               <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">&gt;</span>
+                   <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">TextBox</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;PositionTo&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span><span class="o">&gt;&lt;</span><span class="err">/asp:TextBox&gt;</span>
+               <span class="o">&lt;</span><span class="err">/div&gt;</span>
+               <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">&gt;</span>
+                   <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">LinkButton</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;linkbuttonPositionTo&quot;</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;btn btn-primary btn-sm&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span><span class="o">&gt;</span><span class="nx">Position</span><span class="o">-</span><span class="nx">to</span><span class="o">&lt;</span><span class="err">/asp:LinkButton&gt;</span>
+               <span class="o">&lt;</span><span class="err">/div&gt;</span>
+           <span class="o">&lt;</span><span class="err">/div&gt;</span>
+       <span class="o">&lt;</span><span class="err">/div&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>The ListView provides far greater control over rendered output than the GridView does. 
+In this <a href="https://getbootstrap.com/">Bootstrap CSS</a> enables a good way to render a responsive 
+grid. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre> 
+       <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;grid-wrapper&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">ListView</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;listviewCustomers&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> <span class="nx">OnItemCommand</span><span class="o">=</span><span class="s2">&quot;listviewCustomersRowAction&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">LayoutTemplate</span><span class="o">&gt;</span>
+
+                <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;row-header-wrapper&quot;</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;row row-header&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;col-sm heading&quot;</span><span class="o">&gt;</span>
+                            <span class="nx">Name</span>
+                        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+                        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;col-md heading&quot;</span><span class="o">&gt;</span>
+                            <span class="nx">City</span><span class="p">,</span> <span class="nx">State</span><span class="p">,</span> <span class="nx">Zip</span>
+                        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+                        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;col-sm heading&quot;</span><span class="o">&gt;</span>
+                            <span class="nx">Actions</span>
+                        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+                    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+                <span class="o">&lt;</span><span class="err">/div&gt;</span>
+
+                <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;row-header-wrapper-small&quot;</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;row row-header&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;col-md heading&quot;</span><span class="o">&gt;</span>
+                            <span class="nx">Customers</span>
+                        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+                    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+                <span class="o">&lt;</span><span class="err">/div&gt;</span>
+
+                <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">PlaceHolder</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;itemPlaceholder&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="err">/LayoutTemplate&gt;</span>
+
+            <span class="o">&lt;</span><span class="nx">ItemTemplate</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;row row-data&quot;</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;col-sm&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;%</span><span class="err">#</span> <span class="p">(</span><span class="nx">Container</span><span class="p">.</span><span class="nx">DataItem</span> <span class="o">*</span><span class="nx">As</span> <span class="nx">CMastNewL2_Entity</span><span class="p">).</span><span class="nx">CMName</span><span class="p">.</span><span class="nx">Trim</span><span class="p">()</span> <span class="o">%&gt;</span>
+                    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+                    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;col-md&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;%</span><span class="err">#</span> <span class="p">(</span><span class="nx">Container</span><span class="p">.</span><span class="nx">DataItem</span> <span class="o">*</span><span class="nx">As</span> <span class="nx">CMastNewL2_Entity</span><span class="p">).</span><span class="nx">CMCity</span><span class="p">.</span><span class="nx">Trim</span><span class="p">()</span> <span class="o">++</span> 
+                            <span class="s2">&quot;, &quot;</span> <span class="o">++</span> 
+                            <span class="p">(</span><span class="nx">Container</span><span class="p">.</span><span class="nx">DataItem</span> <span class="o">*</span><span class="nx">As</span> <span class="nx">CMastNewL2_Entity</span><span class="p">).</span><span class="nx">CMState</span><span class="p">.</span><span class="nx">Trim</span><span class="p">()</span> <span class="o">++</span> 
+                            <span class="s2">&quot; &quot;</span> <span class="o">++</span> 
+                            <span class="p">(</span><span class="nx">Container</span><span class="p">.</span><span class="nx">DataItem</span> <span class="o">*</span><span class="nx">As</span> <span class="nx">CMastNewL2_Entity</span><span class="p">).</span><span class="nx">CMPostCode</span><span class="p">.</span><span class="nx">Trim</span><span class="p">()</span> <span class="o">%&gt;</span>
+                    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+                    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;col-sm&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">LinkButton</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;linkbuttonUpdate&quot;</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;btn btn-primary btn-tiny&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> 
+                                <span class="nx">CommandArgument</span><span class="o">=</span><span class="s2">&quot;&lt;%# Container.DisplayIndex %&gt;&quot;</span> <span class="nx">CommandName</span><span class="o">=</span><span class="s2">&quot;updaterow&quot;</span><span class="o">&gt;</span><span class="nx">Update</span><span class="o">&lt;</span><span class="err">/asp:LinkButton&gt;</span>
+                        <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">LinkButton</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;linkbuttonEmail&quot;</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;btn btn-success btn-tiny&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> 
+                                <span class="nx">CommandArgument</span><span class="o">=</span><span class="s2">&quot;&lt;%# Container.DisplayIndex %&gt;&quot;</span> <span class="nx">CommandName</span><span class="o">=</span><span class="s2">&quot;sendemail&quot;</span><span class="o">&gt;</span><span class="nx">Email</span><span class="o">&lt;</span><span class="err">/asp:LinkButton&gt;</span>
+                        <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;update-customer?id=&lt;%# (Container.DataItem *As CMastNewL2_Entity).CMCustNo.ToString().Trim()%&gt;&quot;</span>
+                            <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;btn btn-warning btn-tiny&quot;</span><span class="o">&gt;</span><span class="nx">Select</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
+                    <span class="o">&lt;</span><span class="err">/div&gt;                    </span>
+                <span class="o">&lt;</span><span class="err">/div&gt;</span>
+            <span class="o">&lt;</span><span class="err">/ItemTemplate&gt;</span>
+        <span class="o">&lt;</span><span class="err">/asp:ListView&gt;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+   <span class="o">&lt;</span><span class="err">/main&gt;</span>
+  
+   <span class="o">&lt;</span><span class="nx">footer</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="err">/footer&gt;</span>
+<span class="o">&lt;</span><span class="err">/div&gt;</span>
+
+
+<span class="o">&lt;</span><span class="err">/asp:Content&gt;</span>
+<span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">Content</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;Content3&quot;</span> <span class="nx">ContentPlaceHolderID</span><span class="o">=</span><span class="s2">&quot;PageScripts&quot;</span> <span class="nx">Runat</span><span class="o">=</span><span class="s2">&quot;Server&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">/asp:Content&gt;</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

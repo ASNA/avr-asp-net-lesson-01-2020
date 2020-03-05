@@ -1,0 +1,51 @@
+﻿:root {
+   /*
+    | To change width of sidebar, change --num-cols. 
+    | Notice how it's responsive to mobile width 
+    | just by changing CSS properties. 
+    */
+   --num-cols: 4;    
+      
+   --last-grid-line-col: calc(var(--num-cols) + 1); 
+   --aside-cols: 1;
+   --aside-row: 2;
+   --main-first-grid-line: calc(var(--aside-cols) + 1);
+}
+
+@media (max-width: 700px) {
+   :root {
+      --aside-cols: var(--num-cols);
+      --aside-row: 3;
+      --main-first-grid-line: 1; 
+   }    
+
+    html {
+        font-size: 85%;
+    }
+}    
+
+.container {
+   display: grid;
+   grid-template-columns: repeat(var(--num-cols), 1fr);
+}
+
+main {
+   background: red;      
+   grid-column: var(--main-first-grid-line) / span var(--last-grid-line-col);
+}
+
+aside {
+   background: yellow;      
+   grid-column: 1 / span var(--aside-cols);
+   grid-row: var(--aside-row);
+}
+
+header {
+   grid-column: 1 / span var(--last-grid-line-col);
+   background: blue;
+}
+
+footer {
+   background: green;
+   grid-column: 1 / var(--last-grid-line-col);
+}

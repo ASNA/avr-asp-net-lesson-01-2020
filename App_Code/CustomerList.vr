@@ -1,0 +1,58 @@
+﻿Using System
+Using System.Collections.Generic
+Using System.Linq
+Using System.Data
+Using System.Configuration
+Using System.Web
+Using System.Web.Security
+Using System.Web.UI
+Using System.Web.UI.WebControls
+Using System.Web.UI.WebControls.WebParts
+Using System.Web.UI.HtmlControls
+
+/// <summary>
+/// Summary description for CustomerList
+/// </summary>
+BegClass CustomerList Access(*Public)
+
+    
+    BegFunc GetList Type(CMastNewL2_Entity) Rank(1) Access(*Public) 
+
+        DclFld Result Type(List(*Of CMastNewL2_Entity)) New()
+        DclFld Cust Type(CMastNewL2_Entity) 
+
+        Cust = *New CMastNewL2_Entity()
+        Cust.cmcustno = 34
+        Cust.cmname = 'Neil Young'
+        Cust.cmcity = 'San Francisco'
+        Cust.cmstate = 'CA'
+        Cust.cmpostcode = '94105'
+        Cust.cmactive = '1'
+        Cust.cmphone = '555-345-1234'
+        Result.Add(Cust) 
+
+        Cust = *New CMastNewL2_Entity()
+        Cust.cmcustno = 35
+        Cust.cmname = 'Stephen Stills'
+        Cust.cmcity = 'Los Angeles'
+        Cust.cmstate = 'CA'
+        Cust.cmpostcode = '90005'
+        Cust.cmactive = '1'
+        Cust.cmphone = '555-123-6767'
+        Result.Add(Cust) 
+
+        Cust = *New CMastNewL2_Entity()
+        Cust.cmcustno = 36
+        Cust.cmname = 'Richie Furay'
+        Cust.cmcity = 'San Diego'
+        Cust.cmstate = 'CA'
+        Cust.cmpostcode = '92092'
+        Cust.cmactive = '1'
+        Cust.cmphone = '555-456-8989'
+        Result.Add(Cust) 
+
+        LeaveSr Result.ToArray()	
+    EndFunc 
+
+
+EndClass

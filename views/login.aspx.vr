@@ -1,0 +1,147 @@
+﻿ 
+
+// This is the code-behind for the Login.aspx page. That page and this code 
+// implement ASP.NET's Forms Authentication for this app. 
+
+// * [Microsoft's Forms Authentication docs](https://support.microsoft.com/en-us/help/301240/how-to-implement-forms-based-authentication-in-your-asp-net-applicatio)
+// * [An old, but good, MS article](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs)
+// * [C# Corner article](https://www.c-sharpcorner.com/UploadFile/fa9d0d/forms-authentication-in-Asp-Net/)
+ 
+Using System
+Using System.Data
+Using System.Configuration
+Using System.Collections
+Using System.Web
+Using System.Web.Security
+Using System.Web.UI
+Using System.Web.UI.WebControls
+Using System.Web.UI.WebControls.WebParts
+Using System.Web.UI.HtmlControls
+Using System.Web.Security
+Using System.IO 
+
+// ---
+// ### Caution ###
+// Always deploy secured Web apps with TLS (ie HTTPS). Otherwise passwords are sent
+// from the client to the server in clear text. 
+// ---
+
+BegClass views_login Partial(*Yes) Access(*Public) Extends(System.Web.UI.Page)
+
+    DclDB DGDB DBName('*Public/Cypress') 
+
+    BegFunc CheckWebUserCredentials Type(*Boolean)
+        DclSrParm User     Type(*String) 
+        DclSrParm Password Type(*String) 
+
+        // Check data store for user with given password. 
+        // For example, you create a "user" table on the IBM i which 
+        // has user_id and hash_password columns (at least). Check this 
+        // table for a user's row and compare the hash_password value against
+        // the hashed value of the password the user provided. 
+        
+        // Don't store passwords in plain text! Store only [hashed, salted passwords](https://auth0.com/blog/hashing-passwords-one-way-road-to-security/)
+        // in your data store. 
+
+        // This is no test here so everyone gets validated. 
+        LeaveSr *True 
+    EndFunc 
+    
+    BegFunc CheckIBMiCredentials Type(ASNA.DataGate.Common.dgException) 
+        DclSrParm User     Type(*String) 
+        DclSrParm Password Type(*String) 
+
+        DGDB.DBName = Session['dbname'].ToString()
+        DGDB.User = User
+        DGDB.Password = Password
+
+        Try 
+            Connect DGDB 
+        Catch ex Type(ASNA.DataGate.Common.dgException)
+            LeaveSR ex 
+        Finally
+            Disconnect DGDB 
+        EndTry 
+
+        LeaveSr *Nothing 
+    EndFunc 
+
+    BegSr Page_Load Access(*Private) Event(*This.Load)
+        DclSrParm sender Type(*Object)
+        DclSrParm e Type(System.EventArgs)
+
+        DclFld CurrentMaster Type(MasterPageNoNav) 
+
+        // Set page title. 
+        Page.Title = 'Login'
+
+        CurrentMaster = *This.Master *As MasterPageNoNav
+        // ChildPage always contains the name of the current ASPX page. 
+        // For example here ChildPage will be 'login.aspx.' It's sometimes 
+        // handy to easily have this value available.
+        CurrentMaster.ChildPage = *New FileInfo(*This.Request.Url.LocalPath).Name.ToLower()
+
+        // Set page heading in the navbar. 
+        CurrentMaster.PageHeading = 'App Login'
+    EndSr
+
+    BegSr Page_Unload Access(*Private) Event(*This.Unload)
+        DclSrParm sender Type(*Object)
+        DclSrParm e Type(System.EventArgs)
+
+    EndSr
+
+    // If validating a user against a data store:
+    // Check for existence of user and password in a data store.
+    // If that function returns true, the user/password validated and that user is 
+    // logged in. This user is independent of the IBM i and its users. A general 
+    // user profile and password connects the app to the IBM i. (This means WRKACTJOB
+    // shows many of the same user). 
+       
+    // If validating a user with IBM i credentials. 
+    // Check that a user can connect with the given credentials.
+    // This technique should generally only be used for Web apps that 
+    // will be used by internal users whom you know already have 
+    // an IBM i account. 
+
+    BegSr buttonlogin_Click Access(*Private) Event(*This.buttonlogin.Click)
+        DclSrParm sender Type(*Object)
+        DclSrParm e Type(System.EventArgs)
+
+        DclFld ex Type(ASNA.DataGate.Common.dgException) 
+
+
+        // Check credentials against IBM i.
+        ex = CheckIBMiCredentials(user.Text, password.Text)
+        // The user was validated if no exception was thrown.
+        If ex = *Nothing 
+            // After validating a user, RedirectFromLoginPage redirects
+            // the user to the page requested.
+            FormsAuthentication.RedirectFromLoginPage(user.Text, rememberme.Checked) 
+        Else 
+            // Show a detailed error message only if debug mode is on. 
+            If (context.Current.IsDebuggingEnabled)     
+                loginFailedValidator.ErrorMessage = ex.Message 
+            Else 
+                LoginFailedValidator.ErrorMessage = 'Login failed'
+            EndIf
+        EndIf
+
+        // Alternatively, check credentials against a data store.
+        //- If (CheckCredentials(user.text, password.text)
+        //-    FormsAuthentication.RedirectFromLoginPage(user.Text, rememberme.Checked) 
+        //- EndIf
+
+    EndSr
+
+    BegSr loginFailedValidator_ServerValidate Access(*Private) Event(*This.loginFailedValidator.ServerValidate)
+        DclSrParm source Type(*Object)
+        DclSrParm args Type(System.Web.UI.WebControls.ServerValidateEventArgs)
+
+        // In most forms, you'd test some logic here to see if the custom validator 
+        // failed. In this case, if control gets here the page wasn't redirected with the 
+        // FormsAuthentication class which means there is an error. 
+        args.IsValid = *False 				
+    EndSr
+
+EndClass

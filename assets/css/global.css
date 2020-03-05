@@ -1,0 +1,23 @@
+﻿.display-no {
+    display:none;
+}
+
+.error-message {
+    color: red;
+    font-weight: 500;
+    background-color: whitesmoke;
+    border: solid 1px lightgray;
+    padding: 0 6px 3px 6px;
+    margin-top: 5px;
+}
+
+.container {
+    margin-top: 2em !important;
+}
+
+.debug-header {
+    width: 100%;
+    background-color: #f8d7da;
+    padding: .5em;
+}
+

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>login.aspx.vr</title>
+  <link rel="stylesheet" href="..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>login.aspx.vr</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>This is the code-behind for the Login.aspx page. That page and this code 
+implement ASP.NET&rsquo;s Forms Authentication for this app. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <ul>
+<li><a href="https://support.microsoft.com/en-us/help/301240/how-to-implement-forms-based-authentication-in-your-asp-net-applicatio">Microsoft&rsquo;s Forms Authentication docs</a></li>
+<li><a href="https://docs.microsoft.com/en-us/aspnet/web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs">An old, but good, MS article</a></li>
+<li><a href="https://www.c-sharpcorner.com/UploadFile/fa9d0d/forms-authentication-in-Asp-Net/">C# Corner article</a></li>
+</ul>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre> 
+<span class="nx">Using</span> <span class="nx">System</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Data</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Configuration</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Collections</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">Security</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span><span class="p">.</span><span class="nx">WebParts</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">HtmlControls</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">Security</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">IO</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <hr />
+<h3>Caution</h3>
+<p>Always deploy secured Web apps with TLS (ie HTTPS). Otherwise passwords are sent
+from the client to the server in clear text. </p>
+<hr />
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BegClass</span> <span class="nx">views_login</span> <span class="nx">Partial</span><span class="p">(</span><span class="o">*</span><span class="nx">Yes</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span> <span class="nx">Extends</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">Page</span><span class="p">)</span>
+
+    <span class="nx">DclDB</span> <span class="nx">DGDB</span> <span class="nx">DBName</span><span class="p">(</span><span class="s1">&#39;*Public/Cypress&#39;</span><span class="p">)</span> 
+
+    <span class="nx">BegFunc</span> <span class="nx">CheckWebUserCredentials</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Boolean</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">User</span>     <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
+        <span class="nx">DclSrParm</span> <span class="nx">Password</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Check data store for user with given password. 
+For example, you create a &ldquo;user&rdquo; table on the IBM i which 
+has user_id and hash_password columns (at least). Check this 
+table for a user&rsquo;s row and compare the hash_password value against
+the hashed value of the password the user provided. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Don&rsquo;t store passwords in plain text! Store only <a href="https://auth0.com/blog/hashing-passwords-one-way-road-to-security/">hashed, salted passwords</a>
+in your data store. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>This is no test here so everyone gets validated. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">LeaveSr</span> <span class="o">*</span><span class="nx">True</span> 
+    <span class="nx">EndFunc</span> 
+    
+    <span class="nx">BegFunc</span> <span class="nx">CheckIBMiCredentials</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">ASNA</span><span class="p">.</span><span class="nx">DataGate</span><span class="p">.</span><span class="nx">Common</span><span class="p">.</span><span class="nx">dgException</span><span class="p">)</span> 
+        <span class="nx">DclSrParm</span> <span class="nx">User</span>     <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
+        <span class="nx">DclSrParm</span> <span class="nx">Password</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
+
+        <span class="nx">DGDB</span><span class="p">.</span><span class="nx">DBName</span> <span class="o">=</span> <span class="nx">Session</span><span class="p">[</span><span class="s1">&#39;dbname&#39;</span><span class="p">].</span><span class="nx">ToString</span><span class="p">()</span>
+        <span class="nx">DGDB</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">User</span>
+        <span class="nx">DGDB</span><span class="p">.</span><span class="nx">Password</span> <span class="o">=</span> <span class="nx">Password</span>
+
+        <span class="nx">Try</span> 
+            <span class="nx">Connect</span> <span class="nx">DGDB</span> 
+        <span class="nx">Catch</span> <span class="nx">ex</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">ASNA</span><span class="p">.</span><span class="nx">DataGate</span><span class="p">.</span><span class="nx">Common</span><span class="p">.</span><span class="nx">dgException</span><span class="p">)</span>
+            <span class="nx">LeaveSR</span> <span class="nx">ex</span> 
+        <span class="nx">Finally</span>
+            <span class="nx">Disconnect</span> <span class="nx">DGDB</span> 
+        <span class="nx">EndTry</span> 
+
+        <span class="nx">LeaveSr</span> <span class="o">*</span><span class="nx">Nothing</span> 
+    <span class="nx">EndFunc</span> 
+
+    <span class="nx">BegSr</span> <span class="nx">Page_Load</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Private</span><span class="p">)</span> <span class="nx">Event</span><span class="p">(</span><span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">Load</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">sender</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Object</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">e</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">EventArgs</span><span class="p">)</span>
+
+        <span class="nx">DclFld</span> <span class="nx">CurrentMaster</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">MasterPageNoNav</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>Set page title. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">Page</span><span class="p">.</span><span class="nx">Title</span> <span class="o">=</span> <span class="s1">&#39;Login&#39;</span>
+
+        <span class="nx">CurrentMaster</span> <span class="o">=</span> <span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">Master</span> <span class="o">*</span><span class="nx">As</span> <span class="nx">MasterPageNoNav</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>ChildPage always contains the name of the current ASPX page. 
+For example here ChildPage will be &lsquo;login.aspx.&rsquo; It&rsquo;s sometimes 
+handy to easily have this value available.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">CurrentMaster</span><span class="p">.</span><span class="nx">ChildPage</span> <span class="o">=</span> <span class="o">*</span><span class="nx">New</span> <span class="nx">FileInfo</span><span class="p">(</span><span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">Request</span><span class="p">.</span><span class="nx">Url</span><span class="p">.</span><span class="nx">LocalPath</span><span class="p">).</span><span class="nx">Name</span><span class="p">.</span><span class="nx">ToLower</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Set page heading in the navbar. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">CurrentMaster</span><span class="p">.</span><span class="nx">PageHeading</span> <span class="o">=</span> <span class="s1">&#39;App Login&#39;</span>
+    <span class="nx">EndSr</span>
+
+    <span class="nx">BegSr</span> <span class="nx">Page_Unload</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Private</span><span class="p">)</span> <span class="nx">Event</span><span class="p">(</span><span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">Unload</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">sender</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Object</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">e</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">EventArgs</span><span class="p">)</span>
+
+    <span class="nx">EndSr</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>If validating a user against a data store:
+Check for existence of user and password in a data store.
+If that function returns true, the user/password validated and that user is 
+logged in. This user is independent of the IBM i and its users. A general 
+user profile and password connects the app to the IBM i. (This means WRKACTJOB
+shows many of the same user). </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>If validating a user with IBM i credentials. 
+Check that a user can connect with the given credentials.
+This technique should generally only be used for Web apps that 
+will be used by internal users whom you know already have 
+an IBM i account. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nx">BegSr</span> <span class="nx">buttonlogin_Click</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Private</span><span class="p">)</span> <span class="nx">Event</span><span class="p">(</span><span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">buttonlogin</span><span class="p">.</span><span class="nx">Click</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">sender</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Object</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">e</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">EventArgs</span><span class="p">)</span>
+
+        <span class="nx">DclFld</span> <span class="nx">ex</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">ASNA</span><span class="p">.</span><span class="nx">DataGate</span><span class="p">.</span><span class="nx">Common</span><span class="p">.</span><span class="nx">dgException</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <p>Check credentials against IBM i.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">ex</span> <span class="o">=</span> <span class="nx">CheckIBMiCredentials</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">Text</span><span class="p">,</span> <span class="nx">password</span><span class="p">.</span><span class="nx">Text</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>The user was validated if no exception was thrown.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">If</span> <span class="nx">ex</span> <span class="o">=</span> <span class="o">*</span><span class="nx">Nothing</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>After validating a user, RedirectFromLoginPage redirects
+the user to the page requested.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">FormsAuthentication</span><span class="p">.</span><span class="nx">RedirectFromLoginPage</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">Text</span><span class="p">,</span> <span class="nx">rememberme</span><span class="p">.</span><span class="nx">Checked</span><span class="p">)</span> 
+        <span class="nx">Else</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p>Show a detailed error message only if debug mode is on. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">If</span> <span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Current</span><span class="p">.</span><span class="nx">IsDebuggingEnabled</span><span class="p">)</span>     
+                <span class="nx">loginFailedValidator</span><span class="p">.</span><span class="nx">ErrorMessage</span> <span class="o">=</span> <span class="nx">ex</span><span class="p">.</span><span class="nx">Message</span> 
+            <span class="nx">Else</span> 
+                <span class="nx">LoginFailedValidator</span><span class="p">.</span><span class="nx">ErrorMessage</span> <span class="o">=</span> <span class="s1">&#39;Login failed&#39;</span>
+            <span class="nx">EndIf</span>
+        <span class="nx">EndIf</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p>Alternatively, check credentials against a data store.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="c1">// If (CheckCredentials(user.text, password.text)</span>
+        <span class="c1">//    FormsAuthentication.RedirectFromLoginPage(user.Text, rememberme.Checked) </span>
+        <span class="c1">// EndIf</span>
+
+    <span class="nx">EndSr</span>
+
+    <span class="nx">BegSr</span> <span class="nx">loginFailedValidator_ServerValidate</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Private</span><span class="p">)</span> <span class="nx">Event</span><span class="p">(</span><span class="o">*</span><span class="nx">This</span><span class="p">.</span><span class="nx">loginFailedValidator</span><span class="p">.</span><span class="nx">ServerValidate</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">source</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Object</span><span class="p">)</span>
+        <span class="nx">DclSrParm</span> <span class="nx">args</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span><span class="p">.</span><span class="nx">ServerValidateEventArgs</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p>In most forms, you&rsquo;d test some logic here to see if the custom validator 
+failed. In this case, if control gets here the page wasn&rsquo;t redirected with the 
+FormsAuthentication class which means there is an error. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">args</span><span class="p">.</span><span class="nx">IsValid</span> <span class="o">=</span> <span class="o">*</span><span class="nx">False</span>                 
+    <span class="nx">EndSr</span>
+
+<span class="nx">EndClass</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

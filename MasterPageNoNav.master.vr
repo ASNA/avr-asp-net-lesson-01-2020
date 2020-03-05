@@ -1,0 +1,57 @@
+﻿Using System
+Using System.Data
+Using System.Configuration
+Using System.Collections
+Using System.Linq
+Using System.Web
+Using System.Web.Security
+Using System.Web.UI
+Using System.Web.UI.WebControls
+Using System.Web.UI.WebControls.WebParts
+Using System.Web.UI.HtmlControls
+
+BegClass MasterPageNoNav Partial(*Yes) Access(*Public) Extends(System.Web.UI.MasterPage)
+
+	DclProp ChildPage Type(*String) Access(*Public)
+	
+	DclFld _PageHeading Type(*String) Inz('Default page heading')
+	BegProp PageHeading Type(*String) Access(*Public) 
+		BegGet
+			LeaveSr _PageHeading
+		EndGet
+		BegSet	
+			_PageHeading = *PropVal
+		EndSet
+
+	EndProp
+	
+	BegSr SetChildPage Access(*Public) 
+		DclSrParm PageName Type(*String) 
+
+		ChildPage = PageName 
+	EndSr
+
+	BegSr SetPageHeading Access(*Public) 
+		DclSrParm NewPageHeading Type(*String) 
+
+		PageHeading = NewPageHeading
+	EndSr
+
+
+    BegSr Page_Load Access(*Private) Event(*This.Load)
+        DclSrParm sender Type(*Object)
+        DclSrParm e Type(System.EventArgs)
+
+        If (NOT IsPostBack)
+            //
+            // Called the first time that the page is loaded.
+            //
+        Else
+            //
+            // Called subsequent times that the page is displayed.
+            //
+        EndIf
+    EndSr
+
+
+EndClass

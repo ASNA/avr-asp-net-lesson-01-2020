@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>login.aspx</title>
+  <link rel="stylesheet" href="..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>login.aspx</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="o">&lt;%</span><span class="err">@</span> <span class="nx">Page</span> <span class="nx">Language</span><span class="o">=</span><span class="s2">&quot;AVR&quot;</span> <span class="nx">MasterPageFile</span><span class="o">=</span><span class="s2">&quot;~/MasterPageNoNav.master&quot;</span> <span class="nx">AutoEventWireup</span><span class="o">=</span><span class="s2">&quot;false&quot;</span> <span class="nx">CodeFile</span><span class="o">=</span><span class="s2">&quot;login.aspx.vr&quot;</span> <span class="nx">Inherits</span><span class="o">=</span><span class="s2">&quot;views_login&quot;</span> <span class="nx">Title</span><span class="o">=</span><span class="s2">&quot;Untitled Page&quot;</span> <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">Content</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;Content1&quot;</span> <span class="nx">ContentPlaceHolderID</span><span class="o">=</span><span class="s2">&quot;Head&quot;</span> <span class="nx">Runat</span><span class="o">=</span><span class="s2">&quot;Server&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">/asp:Content&gt;</span>
+<span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">Content</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;Content2&quot;</span> <span class="nx">ContentPlaceHolderID</span><span class="o">=</span><span class="s2">&quot;Content&quot;</span> <span class="nx">Runat</span><span class="o">=</span><span class="s2">&quot;Server&quot;</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;container&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;form-group&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">&quot;user&quot;</span><span class="o">&gt;</span><span class="nx">User</span><span class="o">&lt;</span><span class="err">/label&gt;</span>
+            <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">TextBox</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;User name&quot;</span> <span class="nx">CssClass</span><span class="o">=</span><span class="s2">&quot;form-control&quot;</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;user&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span><span class="o">&gt;&lt;</span><span class="err">/asp:TextBox&gt;</span>
+            <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">RequiredFieldValidator</span> <span class="nx">CssClass</span><span class="o">=</span><span class="s2">&quot;form-text error-message&quot;</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;userRequiredValidator&quot;</span> <span class="nx">ControlToValidate</span><span class="o">=</span><span class="s2">&quot;user&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> <span class="nx">ErrorMessage</span><span class="o">=</span><span class="s2">&quot;Please enter user name&quot;</span> <span class="nx">Display</span><span class="o">=</span><span class="s2">&quot;Dynamic&quot;</span><span class="o">&gt;&lt;</span><span class="err">/asp:RequiredFieldValidator&gt;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;form-group&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="o">&gt;</span><span class="nx">Password</span><span class="o">&lt;</span><span class="err">/label&gt;</span>
+            <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">TextBox</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;password&quot;</span> <span class="nx">CssClass</span><span class="o">=</span><span class="s2">&quot;form-control&quot;</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;password&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> <span class="nx">TextMode</span><span class="o">=</span><span class="s2">&quot;Password&quot;</span><span class="o">&gt;&lt;</span><span class="err">/asp:TextBox&gt;</span>
+            <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">RequiredFieldValidator</span> <span class="nx">CssClass</span><span class="o">=</span><span class="s2">&quot;form-text error-message&quot;</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;passwordRequiredValidator&quot;</span> <span class="nx">ControlToValidate</span><span class="o">=</span><span class="s2">&quot;user&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> <span class="nx">ErrorMessage</span><span class="o">=</span><span class="s2">&quot;Please enter your password&quot;</span> <span class="nx">Display</span><span class="o">=</span><span class="s2">&quot;Dynamic&quot;</span><span class="o">&gt;&lt;</span><span class="err">/asp:RequiredFieldValidator&gt;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;form-group form-check&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">CheckBox</span> <span class="nx">CssClass</span><span class="o">=</span><span class="s2">&quot;form-check-input&quot;</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;rememberme&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="nx">label</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;form-check-label&quot;</span> <span class="k">for</span><span class="o">=</span><span class="s2">&quot;rememberme&quot;</span><span class="o">&gt;</span><span class="nx">Remember</span> <span class="nx">me</span><span class="o">&lt;</span><span class="err">/label&gt;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+        <span class="o">&lt;</span><span class="nx">br</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">Button</span> <span class="nx">CssClass</span><span class="o">=</span><span class="s2">&quot;btn btn-primary&quot;</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;buttonlogin&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> <span class="nx">Text</span><span class="o">=</span><span class="s2">&quot;Login&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">CustomValidator</span> <span class="nx">CssClass</span><span class="o">=</span><span class="s2">&quot;alert alert-danger&quot;</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;loginFailedValidator&quot;</span> <span class="nx">runat</span><span class="o">=</span><span class="s2">&quot;server&quot;</span> <span class="nx">ErrorMessage</span><span class="o">=</span><span class="s2">&quot;Login failed&quot;</span> <span class="nx">Display</span><span class="o">=</span><span class="s2">&quot;Dynamic&quot;</span><span class="o">&gt;&lt;</span><span class="err">/asp:CustomValidator&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+
+<span class="o">&lt;</span><span class="err">/asp:Content&gt;</span>
+<span class="o">&lt;</span><span class="nx">asp</span><span class="o">:</span><span class="nx">Content</span> <span class="nx">ID</span><span class="o">=</span><span class="s2">&quot;Content3&quot;</span> <span class="nx">ContentPlaceHolderID</span><span class="o">=</span><span class="s2">&quot;PageScripts&quot;</span> <span class="nx">Runat</span><span class="o">=</span><span class="s2">&quot;Server&quot;</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+    <span class="nx">applib</span><span class="p">.</span><span class="nx">removeAspNetCheckboxWrapper</span><span class="p">(</span><span class="s1">&#39;#content_rememberme&#39;</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+<span class="o">&lt;</span><span class="err">/asp:Content&gt;</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

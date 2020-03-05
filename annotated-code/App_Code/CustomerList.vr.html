@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>CustomerList.vr</title>
+  <link rel="stylesheet" href="..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>CustomerList.vr</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="nx">Using</span> <span class="nx">System</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">Generic</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Linq</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Data</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Configuration</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">Security</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">WebControls</span><span class="p">.</span><span class="nx">WebParts</span>
+<span class="nx">Using</span> <span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">HtmlControls</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>/ <summary>
+/ Summary description for CustomerList
+/ </summary></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BegClass</span> <span class="nx">CustomerList</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span>
+
+    
+    <span class="nx">BegFunc</span> <span class="nx">GetList</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">CMastNewL2_Entity</span><span class="p">)</span> <span class="nx">Rank</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span> 
+
+        <span class="nx">DclFld</span> <span class="nx">Result</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">List</span><span class="p">(</span><span class="o">*</span><span class="nx">Of</span> <span class="nx">CMastNewL2_Entity</span><span class="p">))</span> <span class="nx">New</span><span class="p">()</span>
+        <span class="nx">DclFld</span> <span class="nx">Cust</span> <span class="nx">Type</span><span class="p">(</span><span class="nx">CMastNewL2_Entity</span><span class="p">)</span> 
+
+        <span class="nx">Cust</span> <span class="o">=</span> <span class="o">*</span><span class="nx">New</span> <span class="nx">CMastNewL2_Entity</span><span class="p">()</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmcustno</span> <span class="o">=</span> <span class="mi">34</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmname</span> <span class="o">=</span> <span class="s1">&#39;Neil Young&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmcity</span> <span class="o">=</span> <span class="s1">&#39;San Francisco&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmstate</span> <span class="o">=</span> <span class="s1">&#39;CA&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmpostcode</span> <span class="o">=</span> <span class="s1">&#39;94105&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmactive</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmphone</span> <span class="o">=</span> <span class="s1">&#39;555-345-1234&#39;</span>
+        <span class="nx">Result</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">Cust</span><span class="p">)</span> 
+
+        <span class="nx">Cust</span> <span class="o">=</span> <span class="o">*</span><span class="nx">New</span> <span class="nx">CMastNewL2_Entity</span><span class="p">()</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmcustno</span> <span class="o">=</span> <span class="mi">35</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmname</span> <span class="o">=</span> <span class="s1">&#39;Stephen Stills&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmcity</span> <span class="o">=</span> <span class="s1">&#39;Los Angeles&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmstate</span> <span class="o">=</span> <span class="s1">&#39;CA&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmpostcode</span> <span class="o">=</span> <span class="s1">&#39;90005&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmactive</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmphone</span> <span class="o">=</span> <span class="s1">&#39;555-123-6767&#39;</span>
+        <span class="nx">Result</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">Cust</span><span class="p">)</span> 
+
+        <span class="nx">Cust</span> <span class="o">=</span> <span class="o">*</span><span class="nx">New</span> <span class="nx">CMastNewL2_Entity</span><span class="p">()</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmcustno</span> <span class="o">=</span> <span class="mi">36</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmname</span> <span class="o">=</span> <span class="s1">&#39;Richie Furay&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmcity</span> <span class="o">=</span> <span class="s1">&#39;San Diego&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmstate</span> <span class="o">=</span> <span class="s1">&#39;CA&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmpostcode</span> <span class="o">=</span> <span class="s1">&#39;92092&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmactive</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+        <span class="nx">Cust</span><span class="p">.</span><span class="nx">cmphone</span> <span class="o">=</span> <span class="s1">&#39;555-456-8989&#39;</span>
+        <span class="nx">Result</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">Cust</span><span class="p">)</span> 
+
+        <span class="nx">LeaveSr</span> <span class="nx">Result</span><span class="p">.</span><span class="nx">ToArray</span><span class="p">()</span>    
+    <span class="nx">EndFunc</span> 
+
+
+<span class="nx">EndClass</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
