@@ -18,10 +18,10 @@ files = []
 for search in searches:
     files.extend(glob.glob(search, recursive=True)) 
 
-delete_folder_contents('./annotated-code')
+delete_folder_contents('./docs')
 
 for file in files:
-    cmd = f'pycco {file} -d ./annotated-code -l javascript -p'
+    cmd = f'pycco {file} -d ./docs -l javascript -p'
     os.system(cmd)
 
-shutil.copy("pycco.css", './annotated-code/')    
+shutil.copy("pycco.css", './docs/')    
