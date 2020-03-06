@@ -53,7 +53,9 @@ def create_index_list(files):
     return index_list
     
 if __name__ == '__main__':  
+    # This program needs to run in the context of the root directory.
     os.chdir('..')
+    
     searches = ('global.asax', 'web.config', '*.aspx', '**/*.aspx', '**/*.vr' )
 
     files = []
