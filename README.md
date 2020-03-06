@@ -18,18 +18,22 @@ This example shows:
 ### Mobile screen shots 
 
 ![](https://asna.com/filebin/marketing/article-figures/avr-asp-net-examples-2020/example-01-login.aspx-mobile.png)
-<div style="margin-top: 4px;margin-bottom: 8px;"><small>Figure 1. Login screen</small></div>
+
+<small>Figure 1. Login screen</small>
 
 ![](https://asna.com/filebin/marketing/article-figures/avr-asp-net-examples-2020/example-01-mobile-grid.png)
-<div style="margin-top: 4px;margin-bottom: 8px;"><small>Figure 2. Customer data rendered with ListView control</small></div>
+
+<small>Figure 2. Customer data rendered with ListView control</small>
 
 ### Desktop screen shots 
 
 ![](https://asna.com/filebin/marketing/article-figures/avr-asp-net-examples-2020/example-01-login.aspx.png)
-<div style="margin-top: 4px;margin-bottom: 8px;"><small>Figure 1. Login screen</small></div>
+
+<small>Figure 1. Login screen</small>
 
 ![](https://asna.com/filebin/marketing/article-figures/avr-asp-net-examples-2020/example-01-grid.png)
-<div style="margin-top: 4px;margin-bottom: 8px;"><small>Figure 2. Customer data rendered with ListView control</small></div>
+
+<small>Figure 2. Customer data rendered with ListView control</small>
 
 * Master pages 
 * User authentication with ASP.NET Forms Authentication
