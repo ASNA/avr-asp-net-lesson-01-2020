@@ -53,6 +53,7 @@ def create_index_list(files):
     return index_list
     
 if __name__ == '__main__':  
+    os.chdir('..')
     searches = ('global.asax', 'web.config', '*.aspx', '**/*.aspx', '**/*.vr' )
 
     files = []
@@ -67,4 +68,4 @@ if __name__ == '__main__':
         cmd = f'pycco {file} -d ./docs -l javascript -p'
         os.system(cmd)
 
-    shutil.copy("pycco.css", './docs/')    
+    shutil.copy("pycco/pycco.css", './docs/')    
