@@ -1,4 +1,6 @@
-﻿### AVR for .NET ASP.NET Example 01
+﻿<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+### AVR for .NET ASP.NET Example 01
 
 [Show annotated code](https://asna.github.io/avr-asp-net-lesson-01-2020)
 
@@ -16,18 +18,18 @@ This example shows:
 ### Mobile screen shots 
 
 ![](https://asna.com/filebin/marketing/article-figures/avr-asp-net-examples-2020/example-01-login.aspx-mobile.png)
-<div><small>Figure 1. Login screen</small></div>
+<div class="mb-8"><small>Figure 1. Login screen</small></div>
 
 ![](https://asna.com/filebin/marketing/article-figures/avr-asp-net-examples-2020/example-01-mobile-grid.png)
-<div><small>Figure 2. Customer data rendered with ListView control</small></div>
+<div class="mb-8"><small>Figure 2. Customer data rendered with ListView control</small></div>
 
 ### Desktop screen shots 
 
 ![](https://asna.com/filebin/marketing/article-figures/avr-asp-net-examples-2020/example-01-login.aspx.png)
-<div><small>Figure 1. Login screen</small></div>
+<div class="mb-8"><small>Figure 1. Login screen</small></div>
 
 ![](https://asna.com/filebin/marketing/article-figures/avr-asp-net-examples-2020/example-01-grid.png)
-<div><small>Figure 2. Customer data rendered with ListView control</small></div>
+<div class="mb-8"><small>Figure 2. Customer data rendered with ListView control</small></div>
 
 * Master pages 
 * User authentication with ASP.NET Forms Authentication
