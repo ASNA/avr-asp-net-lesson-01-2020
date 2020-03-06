@@ -13,8 +13,14 @@ def delete_folder_contents(folder):
             shutil.rmtree(os.path.join(root, d))
 
 def write_directory(files):
+    anchor_tags = []
     template = '<a href="{url}">{filename}</a>'
-    for file in files: 
+    for file in files:
+        tag = template.format(url=file + '.html', filename=file)
+        anchor_tags.append(tag)
+    anchor_tags.sort()
+    print(anchor_tags)            
+
 
            
 searches = ('**/*.vr', 'global.asax', '**/*.aspx', '*.aspx', 'web.config')
@@ -23,13 +29,11 @@ files = []
 for search in searches:
     files.extend(glob.glob(search, recursive=True)) 
 
-print(files)    
-exit()
-
 delete_folder_contents('./docs')
 
 for file in files:
     cmd = f'pycco {file} -d ./docs -l javascript -p'
     os.system(cmd)
 
+write_directory(files)
 shutil.copy("pycco.css", './docs/')    
