@@ -110,7 +110,6 @@ BegClass views_login Partial(*Yes) Access(*Public) Extends(System.Web.UI.Page)
 
         DclFld ex Type(ASNA.DataGate.Common.dgException) 
 
-
         // Check credentials against IBM i.
         ex = CheckIBMiCredentials(user.Text, password.Text)
         // The user was validated if no exception was thrown.

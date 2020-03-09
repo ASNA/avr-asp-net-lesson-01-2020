@@ -210,8 +210,151 @@ Having made these changes, the full `web.config` should now look like the one sh
     </configuration>    
 ```    
 
-<small>Figure 4c. The full web.config with user authentication specified</small>
+<small>Figure 4c. The full `web.config` with user authentication specified</small>
 
+##### Create a login form 
+
+The basic logic for Forms Authentication is: 
+* User requests a given page (let's say `Index.aspx`)
+* ASP.NET checks to see if the user has a previously-created, and va:lid, credential cookie
+    * If so, the user is redirected to the requested page. 
+    * If not the user is redirected to the login page.
+* The login page checks to see if the credentials entered are valid:
+    * If so, the user is redirected to the requested page. 
+    * If not the user is redirected to the login page with a login error message displayed.
+
+To fetch user credentials, ASP.NET provides a [login control](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.login?view=netframework-4.8), but it isn't responsive and is pretty easy to replicate, so we don't use it. The login screens and this app uses are shown at the top of this document in Figures 1a (mobile) and Figure 2a (desktop). 
+
+> This application uses the [Bootstrap 4.x CSS library](https://getbootstrap.com/). We'll discuss that topic later, so the code below doesn't include any CSS. In this section we focus on login logic. 
+
+The login UI needs x controls:
+
+* A user ID textbox
+* Required field validator for the user ID
+* A password textbox 
+* A required field validator for the password
+* A remember-me checkbox (to govern caching credientials in a cookie)
+* A button to initiate the login 
+* A custom validator to show a error if the login failed
+
+These controls, without CSS, are shown below in Figure 5a:
+```
+            <asp:TextBox 
+                         ID="user" 
+                         runat="server">
+            </asp:TextBox>
+
+            <asp:RequiredFieldValidator 
+                         ID="userRequiredValidator" 
+                         ControlToValidate="user" 
+                         runat="server" 
+                         ErrorMessage="Please enter user name" Display="Dynamic">
+            </asp:RequiredFieldValidator>
+
+            <asp:TextBox  
+                         ID="password" 
+                         runat="server" 
+                         TextMode="Password">
+            </asp:TextBox>
+
+            <asp:RequiredFieldValidator 
+                         ID="passwordRequiredValidator" 
+                         ControlToValidate="user"
+                         runat="server" 
+                         ErrorMessage="Please enter your password" Display="Dynamic">
+            </asp:RequiredFieldValidator>
+
+            <asp:CheckBox 
+                         ID="rememberme" 
+                         runat="server" />
+
+            <asp:Button 
+                         ID="buttonlogin"
+                         runat="server" 
+                         Text="Login" />                         
+
+            <asp:CustomValidator 
+                         ID="loginFailedValidator" 
+                         runat="server" 
+                         ErrorMessage="Login failed" 
+                         Display="Dynamic">
+            </asp:CustomValidator>
+```
+<small>Figure 5a. The basic controls needed for user login.</small>
+
+The `buttonLogin's` `Click` event provides the login logic. 
+```
+BegSr buttonlogin_Click Access(*Private) Event(*This.buttonlogin.Click)
+    DclSrParm sender Type(*Object)
+    DclSrParm e Type(System.EventArgs)
+
+    DclFld ex Type(ASNA.DataGate.Common.dgException) 
+
+    // Check credentials against IBM i.
+    ex = CheckIBMiCredentials(user.Text, password.Text)
+    // The user was validated if no exception was thrown.
+    If ex = *Nothing 
+        // After validating a user, RedirectFromLoginPage redirects
+        // the user to the page requested.
+        FormsAuthentication.RedirectFromLoginPage(user.Text, rememberme.Checked) 
+    Else 
+        // Show a detailed error message only if debug mode is on. 
+        If (context.Current.IsDebuggingEnabled)     
+            loginFailedValidator.ErrorMessage = ex.Message 
+        Else 
+            LoginFailedValidator.ErrorMessage = 'Login failed'
+        EndIf
+    EndIf
+EndSr
+```
+<small>Figure 5b. `buttonLogin's` click event code.</small>
+
+Figure 5b's logic validates the credentials entered against an IBM i (we'll at that code in a moment). If that function validates the credentials the `FormsAuthentication.RedirectFromLoginPage` method shows the page the user originally requested. The user name and the status of the "remember me" checkbox is passed as arguments to the `RedirectFromLoginPage` method. The user name is stored internally and can easily be fetched for display or other users. If the "remember me" checkbox was checked (its value was true) the user credentials cookies is created (or updated with a new expiry date)
+
+Note that the logic in 5B uses ASP.NET's globally available `context.Current.IsDebuggingEnabled` value to determine what error message should be displayed. If is running under debug, the exact CPF error message is shown. If the program is not running under debug, a nebulous "Login failed" error message is shown. This limits the login status information provided to avoid potential security risks (don't give Internet black hats any more clues than necessary!). 
+
+```
+BegFunc CheckIBMiCredentials Type(ASNA.DataGate.Common.dgException) 
+    DclSrParm User     Type(*String) 
+    DclSrParm Password Type(*String) 
+
+    DGDB.DBName = Session['dbname'].ToString()
+    DGDB.User = User
+    DGDB.Password = Password
+
+    Try 
+        Connect DGDB 
+    Catch ex Type(ASNA.DataGate.Common.dgException)
+        LeaveSR ex 
+    Finally
+        Disconnect DGDB 
+    EndTry 
+
+    LeaveSr *Nothing 
+EndFunc 
+```
+<small>Figure 5c. A way to validate against the IBM i.</small>
+
+The logic in Figure 5b validates the credentials calling the `CheckIBMiCredentials` function which tries to connect to the IBM i with the credentials provided (as shown directly above in Figure 5c). If the login succeeds the function returns *Nothing and it it fails the function returns the related exception (which contains the IBM i CPF error message). 
+
+```
+BegFunc CheckWebUserCredentials Type(*Boolean)
+    DclSrParm User     Type(*String) 
+    DclSrParm Password Type(*String) 
+
+    // Check data store for user with given password. 
+    // For example, you create a "user" table on the IBM i which 
+    // has user_id and hash_password columns (at least). Check this 
+    // table for a user's row and compare the hash_password value against
+    // the hashed value of the password the user provided. 
+    
+    // Don't store passwords in plain text! Store only [hashed, salted passwords](https://auth0.com/blog/hashing-passwords-one-way-road-to-security/)
+    // in your data store. 
+
+    // This is no test here so everyone gets validated. 
+    LeaveSr *True 
+EndFunc 
+```
 
 ### Runtime Database Name selection
 ### ListView control to render with a grid-like view

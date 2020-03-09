@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    Hello world
+    Any user, authenticated or anonymous should be able to get to this page. 
     </div>
     </form>
 </body>
