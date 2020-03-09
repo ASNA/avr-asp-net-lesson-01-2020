@@ -74,7 +74,7 @@ You may also see `.gitignore` and `README.md` files in the root. These are are f
 
 Master page info here
 
-#### User authentication with ASP.NET Forms Authentication
+### User authentication with ASP.NET Forms Authentication
 
 In almost any Web application you'll want some kind of user authentication. ASP.NET has authentication, called Forms Authentication, available and it is very easy and flexible to use. Once enabled, prevents unauthorized users from using any part the site. This is also a way to configure exceptions to allow non-authorized users to see some parts of the site. 
 
@@ -110,11 +110,11 @@ When you create a new AVR ASP.NET Website with Visual Studio the `web.config` fi
 ```
 <small>Figure 3. Basic standard `web.config`</small>
 
-##### To configure ASP.NET Forms Authentication 
+#### To configure ASP.NET Forms Authentication 
 
-###### 1. Add configuration values to `web.config`
+##### 1. Add configuration values to `web.config`
 
-Add these two XML nodes directly in the <system.web> node directly under the <compilation> node:
+Add these two XML nodes in the <system.web> node directly under the `<compilation>` node:
 ```
 <authentication mode="Forms">
     <forms loginUrl="views/login.aspx" timeout="30"/>
