@@ -26,7 +26,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" Runat="Server">
 
-<scri
+<script>
     applib.removeAspNetCheckboxWrapper('#content_rememberme')
 </script>
 </asp:Content>

@@ -13,13 +13,13 @@
     <%
     If (HttpContext.Current.IsDebuggingEnabled)     
     %>
-    <link rel="stylesheet" href="<%=Page.ResolveUrl("~")%>assets/css/one-column-layout.css">
-    <link rel="stylesheet" href="<%=Page.ResolveUrl("~")%>assets/css/grid.css">
+    <link rel="stylesheet" href="/public/css/one-column-layout.css">
+    <link rel="stylesheet" href="/public/css/grid.css">
     <%
     Else
     %>
-    <link rel="stylesheet" href="<%=Page.ResolveUrl("~")%>assets/css/one-column-layout.css">
-    <link rel="stylesheet" href="<%=Page.ResolveUrl("~")%>assets/css/grid.css">
+    <link rel="stylesheet" href="/public/css/one-column-layout.css">
+    <link rel="stylesheet" href="/public/css/grid.css">
     <%
     EndIf 
     %>
