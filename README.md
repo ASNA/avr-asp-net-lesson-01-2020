@@ -41,6 +41,8 @@ This example shows:
 * Classes to separate DB and business logic from ASP.NET code-behind logic
 * Session start event to perform session startup 
 
+### A quick look a the folder structure
+
 Before we dig into detail on each of the above sections, lets preview the basic directory structure for this ASP.NET Web application. This is an opinionated structure and you can change it any way you see fit. However, we don't recommend that until you are very comfortable with ASP.NET. The structure presented here as worked well for us for a long time and many Web apps.
 ```
 .
@@ -60,16 +62,9 @@ Before we dig into detail on each of the above sections, lets preview the basic 
 
 The `pycco` folder isn't really part of this application. It contains a Python script and related files that produce [annotated code](https://asna.github.io/avr-asp-net-lesson-01-2020/) which is placed in the `docs` folder. The `pycco` folder can be deleted--you're not likely to need it. You probably won't produce annotated code and can use the `docs` folder for you own projects' documentation.
 
-# root
-## App_Code
-## Bin
-## docs
-## public
-### vendors 
-### css
-### js 
-## pycco
-## views
+`Global.asax`, `web.config`, `web.debug.config`, and master pages are stored in the root. 
+
+You may also see `.gitignore` and `README.md` files in the root. These are are for Git and GitHub source control. 
 
 ### Master Pages
 
