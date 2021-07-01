@@ -282,7 +282,8 @@ These controls, without CSS, are shown below in Figure 5a:
 ```
 <small>Figure 5a. The basic controls needed for user login.</small>
 
-The `buttonLogin's` `Click` event provides the login logic. 
+The `buttonLogin's` `Click` event handler (shown below in Figure 5b) provides the login logic. 
+
 ```
 BegSr buttonlogin_Click Access(*Private) Event(*This.buttonlogin.Click)
     DclSrParm sender Type(*Object)
@@ -309,16 +310,24 @@ EndSr
 ```
 <small>Figure 5b. `buttonLogin's` click event code.</small>
 
-Figure 5b's logic validates the credentials entered against an IBM i (we'll at that code in a moment). If that function validates the credentials the `FormsAuthentication.RedirectFromLoginPage` method shows the page the user originally requested. The user name and the status of the "remember me" checkbox is passed as arguments to the `RedirectFromLoginPage` method. The user name is stored internally and can easily be fetched for display or other users. If the "remember me" checkbox was checked (its value was true) the user credentials cookies is created (or updated with a new expiry date)
+Figure 5b's logic validates the credentials entered against an IBM i. If that function validates the credentials the `FormsAuthentication.RedirectFromLoginPage` method shows the page the user originally requested. The user name and the status of the "remember me" checkbox is passed as arguments to the `RedirectFromLoginPage` method. The user name is stored internally and can easily be fetched for display or other users. If the "remember me" checkbox was checked (its value was true) the user credentials cookies is created (or updated with a new expiry date)
 
 Note that the logic in 5B uses ASP.NET's globally available `context.Current.IsDebuggingEnabled` value to determine what error message should be displayed. If is running under debug, the exact CPF error message is shown. If the program is not running under debug, a nebulous "Login failed" error message is shown. This limits the login status information provided to avoid potential security risks (don't give Internet black hats any more clues than necessary!). 
 
+##### Validating against the IBM i
+
+The code below in Figure 5c shows a way to validate against the IBM i. It attempts to connect to the IBM i with the credentials provided. On success it returns *Nothing; on login failure it returns the exception DataGate raised.
+
 ```
+DclDB DGDB DBName('*Public/Cypress') 
+
+...
+
 BegFunc CheckIBMiCredentials Type(ASNA.DataGate.Common.dgException) 
     DclSrParm User     Type(*String) 
     DclSrParm Password Type(*String) 
 
-    DGDB.DBName = Session['dbname'].ToString()
+    // Use the user name and password from the login page.
     DGDB.User = User
     DGDB.Password = Password
 
@@ -335,26 +344,56 @@ EndFunc
 ```
 <small>Figure 5c. A way to validate against the IBM i.</small>
 
-The logic in Figure 5b validates the credentials calling the `CheckIBMiCredentials` function which tries to connect to the IBM i with the credentials provided (as shown directly above in Figure 5c). If the login succeeds the function returns *Nothing and it it fails the function returns the related exception (which contains the IBM i CPF error message). 
+The use case for authenticating users against the IBM i would generally be that the app is intended for internal employee usage. Its limitation is that _every_ user needs an IBM i account. Be aware that for businesses with complex regulatory security standards, validating directly against the IBM i may be not be allowed--check with your security officers before you adopt that model). 
+
+>Independent of how your application validates users, you _must_ deploy the site with HTTPS to ensure that user credentials are not passed from the client to server in clear text.
+
+##### Validating against an application-specific data store
+
+For many Web sites, you might want to use an external data store. This store would usually be a table where user account information (ie, user ID, password,account status, permissions and roles, etc) is stored. Let's consider a small, example. The table below shows two registered users in a simple table let's call `WEBUSERS`. `vanm's` account is enabled but `warrenz's` is not (in this an administrator would have flagged his account disabled for some reason.)
+
+|UserId    |HashedPw                                |Enabled  |
+|:---------|:---------------------------------------|:-------:|
+|vanm      |df4dd4eb5e2ac759f92de96b0856ebd3d45e8d3d|   1     |
+|warrenz   |9663ea9a5e57758c0fb927047c5f68788ece4f49|   0     |
+
+<small>Figure 6a. An very simple user validation table</small>
 
 ```
+DclDB DGDB DBName( "*Public/Cypress" ) 
+            
+DclDiskFile  WebUsers +
+        Type(*Input  ) +
+        Org(*Indexed ) +
+        Prefix(WebUsers_)
+        File("*Lib/WebUsers" ) +
+        DB(DGDB) +
+        ImpOpen(*No)  
+
 BegFunc CheckWebUserCredentials Type(*Boolean)
     DclSrParm User     Type(*String) 
     DclSrParm Password Type(*String) 
 
-    // Check data store for user with given password. 
-    // For example, you create a "user" table on the IBM i which 
-    // has user_id and hash_password columns (at least). Check this 
-    // table for a user's row and compare the hash_password value against
-    // the hashed value of the password the user provided. 
-    
-    // Don't store passwords in plain text! Store only [hashed, salted passwords](https://auth0.com/blog/hashing-passwords-one-way-road-to-security/)
-    // in your data store. 
+    DclFld Result Type(*Boolean) Inz(*False)
+    DclConst ACCOUNT_ENABLED Value(1)
 
-    // This is no test here so everyone gets validated. 
-    LeaveSr *True 
+    Connect DGDB
+    Open WebUsers 
+
+    Chain WebUsers Key(WebUsers_User) 
+    If WebUsers.IsFound AND + 
+       WebUsers_Enabled = ACCOUNT_ENABLED AND + 
+       HashPassword(Password) = WebUsers_HashedPW
+        Result = *True
+    EndIf 
+
+    Close DGDB
+    Disconnect WebUsers
+    
+    LeaveSr Result 
 EndFunc 
 ```
+<small>Figure 6b. Sample code to validate a Web site user</small>
 
 ### Runtime Database Name selection
 ### ListView control to render with a grid-like view

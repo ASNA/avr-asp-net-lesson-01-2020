@@ -28,7 +28,7 @@ Using System.IO
 
 BegClass views_login Partial(*Yes) Access(*Public) Extends(System.Web.UI.Page)
 
-    DclDB DGDB DBName('*Public/Cypress') 
+    DclDB DGDB DBName('*Public/Cypress5166') 
 
     BegFunc CheckWebUserCredentials Type(*Boolean)
         DclSrParm User     Type(*String) 

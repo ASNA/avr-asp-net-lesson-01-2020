@@ -43,13 +43,13 @@ for the production version.</p>
       <div class="highlight"><pre>    <span class="o">&lt;%</span>
     <span class="nx">If</span> <span class="p">(</span><span class="nx">HttpContext</span><span class="p">.</span><span class="nx">Current</span><span class="p">.</span><span class="nx">IsDebuggingEnabled</span><span class="p">)</span>     
     <span class="o">%&gt;</span>
-    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;%=Page.ResolveUrl(&quot;</span><span class="o">~</span><span class="s2">&quot;)%&gt;assets/css/one-column-layout.css&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;%=Page.ResolveUrl(&quot;</span><span class="o">~</span><span class="s2">&quot;)%&gt;assets/css/grid.css&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/public/css/one-column-layout.css&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/public/css/grid.css&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;%</span>
     <span class="nx">Else</span>
     <span class="o">%&gt;</span>
-    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;%=Page.ResolveUrl(&quot;</span><span class="o">~</span><span class="s2">&quot;)%&gt;assets/css/one-column-layout.css&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;%=Page.ResolveUrl(&quot;</span><span class="o">~</span><span class="s2">&quot;)%&gt;assets/css/grid.css&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/public/css/one-column-layout.css&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/public/css/grid.css&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;%</span>
     <span class="nx">EndIf</span> 
     <span class="o">%&gt;</span>

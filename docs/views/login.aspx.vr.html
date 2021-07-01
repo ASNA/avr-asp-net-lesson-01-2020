@@ -79,7 +79,7 @@ from the client to the server in clear text. </p>
     <div class='code'>
       <div class="highlight"><pre><span class="nx">BegClass</span> <span class="nx">views_login</span> <span class="nx">Partial</span><span class="p">(</span><span class="o">*</span><span class="nx">Yes</span><span class="p">)</span> <span class="nx">Access</span><span class="p">(</span><span class="o">*</span><span class="nx">Public</span><span class="p">)</span> <span class="nx">Extends</span><span class="p">(</span><span class="nx">System</span><span class="p">.</span><span class="nx">Web</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">Page</span><span class="p">)</span>
 
-    <span class="nx">DclDB</span> <span class="nx">DGDB</span> <span class="nx">DBName</span><span class="p">(</span><span class="s1">&#39;*Public/Cypress&#39;</span><span class="p">)</span> 
+    <span class="nx">DclDB</span> <span class="nx">DGDB</span> <span class="nx">DBName</span><span class="p">(</span><span class="s1">&#39;*Public/Cypress5166&#39;</span><span class="p">)</span> 
 
     <span class="nx">BegFunc</span> <span class="nx">CheckWebUserCredentials</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Boolean</span><span class="p">)</span>
         <span class="nx">DclSrParm</span> <span class="nx">User</span>     <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
@@ -301,9 +301,9 @@ the user to the page requested.</p>
       <p>Alternatively, check credentials against a data store.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="c1">// If (CheckCredentials(user.text, password.text)</span>
-        <span class="c1">//    FormsAuthentication.RedirectFromLoginPage(user.Text, rememberme.Checked) </span>
-        <span class="c1">// EndIf</span>
+      <div class="highlight"><pre>        <span class="c1">//- If (CheckCredentials(user.text, password.text)</span>
+        <span class="c1">//-    FormsAuthentication.RedirectFromLoginPage(user.Text, rememberme.Checked) </span>
+        <span class="c1">//- EndIf</span>
 
     <span class="nx">EndSr</span>
 
